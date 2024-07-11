@@ -1,4 +1,4 @@
-FROM node:18-alpine AS base
+FROM node:20-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock ./
-RUN yarn --frozen-lockfile --production;
+RUN yarn --frozen-lockfile;
 RUN rm -rf ./.next/cache
 
 # Rebuild the source code only when needed
