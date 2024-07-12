@@ -1,0 +1,15 @@
+version: "3"
+services:
+  mariadb:
+    image: mariadb:10
+    environment:
+      MARIADB_DATABASE: "<MARIADB_DATABASE>"
+      MARIADB_USER: "<MARIADB_USER>"
+      MARIADB_PASSWORD: "<MARIADB_PASSWORD>"
+      MARIADB_ROOT_PASSWORD: "<MARIADB_ROOT_PASSWORD>"
+    ports:
+      - 3306:3306
+    volumes:
+      - "./mariadb/data:/var/lib/mysql"
+    restart: always
+    container_name: mariadb
