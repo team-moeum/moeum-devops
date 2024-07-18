@@ -11,23 +11,29 @@ services:
       - backend
       - frontend
       - backoffice
+    networks:
+      - backend
   backend:
     image: <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/<your-repository-name>:<your-tag>
     ports:
       - "8080:8080"
     restart: always
-    networks:
-      - backend
+    # networks:
+    #   - api
   frontend:
     image: <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/<your-repository-name>:<your-tag>
     ports:
       - "3000:3000"
     restart: always
+    # networks:
+    #   - api
   backoffice:
     image: <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/<your-repository-name>:<your-tag>
     ports:
       - "3001:3001"
     restart: always
+    # networks:
+    #   - api
   mariadb:
     image: mariadb:10
     environment:
@@ -41,9 +47,8 @@ services:
       - "./mariadb/data:/var/lib/mysql"
     restart: always
     container_name: mariadb
-    networks:
-      - backend
-
-networks:
-  backend:
-    driver: bridge
+    # networks:
+    #   - api
+# networks:
+# api:
+# driver: bridge
